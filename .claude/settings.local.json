@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.jiaoan365.com)",
+      "WebFetch(domain:www.hnztaqkj.com)",
+      "Bash(curl:*)",
+      "WebSearch"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
