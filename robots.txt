@@ -1,0 +1,22 @@
+# robots.txt for 湖南嘉遂安全科技有限公司
+
+# 允许所有搜索引擎抓取
+User-agent: *
+Allow: /
+
+# 禁止抓取的路径（如有需要可以添加）
+# Disallow: /private/
+# Disallow: /admin/
+
+# Sitemap位置
+Sitemap: https://www.jiasui-safety.com/sitemap.xml
+
+# 特定搜索引擎规则
+User-agent: Googlebot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: bingbot
+Allow: /

@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initImageZoomFunctionality();
     initContactFeatures();
     initAnimationOnScroll();
+    initAnnouncementsHome();
 });
 
 // 导航栏功能
@@ -739,4 +740,157 @@ window.jiasuiWebsite = {
     }
 };
 
+// 主页公示信息分页配置
+let homeAnnouncementsPage = 1;
+const homeItemsPerPage = 5;
+
+// 初始化主页公示信息
+function initAnnouncementsHome() {
+    const listContainer = document.getElementById('announcementsListHome');
+    
+    if (!listContainer) {
+        console.log('未找到公示信息容器');
+        return;
+    }
+    
+    // 检查是否有公示数据
+    if (typeof announcementsData === 'undefined') {
+        console.log('公示数据未定义');
+        listContainer.innerHTML = '<p class="no-announcements">正在加载公示信息...</p>';
+        // 延迟重试
+        setTimeout(initAnnouncementsHome, 100);
+        return;
+    }
+    
+    if (!announcementsData.length) {
+        console.log('公示数据为空');
+        listContainer.innerHTML = '<p class="no-announcements">暂无公示信息</p>';
+        return;
+    }
+    
+    console.log('加载公示信息，共' + announcementsData.length + '条');
+    renderAnnouncementsHome();
+    renderPaginationHome();
+}
+
+// 渲染主页公示信息列表
+function renderAnnouncementsHome() {
+    const listContainer = document.getElementById('announcementsListHome');
+    
+    if (!listContainer) {
+        console.error('渲染失败：未找到容器');
+        return;
+    }
+    
+    const startIndex = (homeAnnouncementsPage - 1) * homeItemsPerPage;
+    const endIndex = startIndex + homeItemsPerPage;
+    const pageData = announcementsData.slice(startIndex, endIndex);
+    
+    console.log('渲染第' + homeAnnouncementsPage + '页，共' + pageData.length + '条');
+    
+    listContainer.innerHTML = pageData.map(item => `
+        <div class="announcement-item-home">
+            <span class="announcement-bullet">•</span>
+            <a href="announcement-detail.html?id=${item.id}" class="announcement-link-home" target="_blank">
+                ${item.title}
+            </a>
+            <span class="announcement-date-home">${item.date}</span>
+        </div>
+    `).join('');
+}
+
+// 渲染主页分页
+function renderPaginationHome() {
+    const paginationContainer = document.getElementById('paginationHome');
+    const totalPages = Math.ceil(announcementsData.length / homeItemsPerPage);
+    
+    if (totalPages <= 1) {
+        paginationContainer.innerHTML = '';
+        return;
+    }
+    
+    let paginationHTML = '';
+    
+    // 上一页按钮
+    paginationHTML += `
+        <button class="page-btn-home prev-page" ${homeAnnouncementsPage === 1 ? 'disabled' : ''} onclick="changePageHome(${homeAnnouncementsPage - 1})">
+            <i class="fas fa-chevron-left"></i>
+            上一页
+        </button>
+    `;
+    
+    // 页码按钮
+    paginationHTML += '<div class="page-numbers-home">';
+    
+    // 始终显示第一页
+    paginationHTML += `
+        <button class="page-number-home ${homeAnnouncementsPage === 1 ? 'active' : ''}" onclick="changePageHome(1)">1</button>
+    `;
+    
+    // 显示省略号或中间页码
+    if (homeAnnouncementsPage > 3) {
+        paginationHTML += '<span class="page-ellipsis-home">...</span>';
+    }
+    
+    // 显示当前页附近的页码
+    for (let i = Math.max(2, homeAnnouncementsPage - 1); i <= Math.min(totalPages - 1, homeAnnouncementsPage + 1); i++) {
+        paginationHTML += `
+            <button class="page-number-home ${homeAnnouncementsPage === i ? 'active' : ''}" onclick="changePageHome(${i})">${i}</button>
+        `;
+    }
+    
+    // 显示省略号或最后一页
+    if (homeAnnouncementsPage < totalPages - 2) {
+        paginationHTML += '<span class="page-ellipsis-home">...</span>';
+    }
+    
+    if (totalPages > 1) {
+        paginationHTML += `
+            <button class="page-number-home ${homeAnnouncementsPage === totalPages ? 'active' : ''}" onclick="changePageHome(${totalPages})">${totalPages}</button>
+        `;
+    }
+    
+    paginationHTML += '</div>';
+    
+    // 下一页按钮
+    paginationHTML += `
+        <button class="page-btn-home next-page" ${homeAnnouncementsPage === totalPages ? 'disabled' : ''} onclick="changePageHome(${homeAnnouncementsPage + 1})">
+            下一页
+            <i class="fas fa-chevron-right"></i>
+        </button>
+    `;
+    
+    paginationContainer.innerHTML = paginationHTML;
+}
+
+// 切换主页公示信息页码
+function changePageHome(page) {
+    const totalPages = Math.ceil(announcementsData.length / homeItemsPerPage);
+    if (page < 1 || page > totalPages) return;
+    
+    homeAnnouncementsPage = page;
+    renderAnnouncementsHome();
+    renderPaginationHome();
+    
+    // 滚动到公示信息section顶部
+    const announcementsSection = document.getElementById('announcements');
+    if (announcementsSection) {
+        const header = document.getElementById('header');
+        const headerHeight = header ? header.offsetHeight : 0;
+        const targetPosition = announcementsSection.offsetTop - headerHeight;
+        
+        window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+        });
+    }
+}
+
 console.log('湖南嘉遂安全科技有限公司网站已加载完成');
+
+// 测试公示数据是否加载
+if (typeof announcementsData !== 'undefined') {
+    console.log('公示数据已加载，共' + announcementsData.length + '条记录');
+} else {
+    console.log('警告：公示数据未加载');
+}

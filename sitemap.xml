@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+    <!-- 首页 -->
+    <url>
+        <loc>https://www.jiasui-safety.com/</loc>
+        <lastmod>2025-01-24</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+    </url>
+
+    <!-- 首页 - 关于我们 -->
+    <url>
+        <loc>https://www.jiasui-safety.com/#about</loc>
+        <lastmod>2025-01-24</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- 首页 - 主要业务 -->
+    <url>
+        <loc>https://www.jiasui-safety.com/#services</loc>
+        <lastmod>2025-01-24</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- 首页 - 公示信息 -->
+    <url>
+        <loc>https://www.jiasui-safety.com/#announcements</loc>
+        <lastmod>2025-01-24</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- 首页 - 联系我们 -->
+    <url>
+        <loc>https://www.jiasui-safety.com/#contact</loc>
+        <lastmod>2025-01-24</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- 公示信息列表页（如果有独立页面） -->
+    <url>
+        <loc>https://www.jiasui-safety.com/announcements.html</loc>
+        <lastmod>2025-01-24</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- 公示详情页（示例 - 可以通过脚本动态生成） -->
+    <url>
+        <loc>https://www.jiasui-safety.com/announcement-detail.html</loc>
+        <lastmod>2025-01-24</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+</urlset>
