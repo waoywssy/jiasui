@@ -20,7 +20,7 @@ const announcementsData = [
         title: '关于交通运输企业安全生产标准化优秀级达标企业湖南众旺集团运输有限公司的公示',
         category: 'project',
         categoryName: '项目公示',
-        date: '2025-01-12',
+        date: '2026-01-12',
         author: '湖南嘉遂安全科技',
         content: `<h2>公示内容</h2>
             <p>湖南众旺集团运输有限公司已完成安全生产标准化建设工作，经评价达到优秀级标准。</p>

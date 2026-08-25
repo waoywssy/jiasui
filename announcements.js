@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // 初始化公示信息页面
 function initAnnouncementsPage() {
+    filteredData.sort((a, b) => b.date.localeCompare(a.date));
     renderAnnouncementsList();
     renderPagination();
 }

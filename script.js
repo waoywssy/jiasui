@@ -1,5 +1,5 @@
 // 页面加载完成后初始化
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // 初始化所有功能
     initNavigation();
     initMobileMenu();
@@ -19,7 +19,7 @@ function initNavigation() {
 
     // 平滑滚动到对应区块
     navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
+        link.addEventListener('click', function (e) {
             e.preventDefault();
 
             const targetId = this.getAttribute('href');
@@ -65,7 +65,7 @@ function initNavigation() {
     }
 
     // 滚动事件监听
-    window.addEventListener('scroll', function() {
+    window.addEventListener('scroll', function () {
         updateActiveNav();
         updateHeaderStyle();
     });
@@ -91,7 +91,7 @@ function initMobileMenu() {
     const navMenu = document.querySelector('.nav-menu');
 
     if (mobileMenuBtn) {
-        mobileMenuBtn.addEventListener('click', function() {
+        mobileMenuBtn.addEventListener('click', function () {
             navMenu.classList.toggle('active');
 
             // 切换图标
@@ -107,7 +107,7 @@ function initMobileMenu() {
     }
 
     // 点击菜单外部关闭
-    document.addEventListener('click', function(e) {
+    document.addEventListener('click', function (e) {
         if (!e.target.closest('.header') && navMenu.classList.contains('active')) {
             navMenu.classList.remove('active');
             const icon = mobileMenuBtn.querySelector('i');
@@ -122,7 +122,7 @@ function initScrollEffects() {
     // 滚动指示器
     const scrollIndicator = document.querySelector('.scroll-indicator');
     if (scrollIndicator) {
-        scrollIndicator.addEventListener('click', function() {
+        scrollIndicator.addEventListener('click', function () {
             const aboutSection = document.getElementById('about');
             if (aboutSection) {
                 const header = document.getElementById('header');
@@ -210,7 +210,7 @@ function initServiceAnimations() {
 
             // 点击指示器切换图片
             indicators.forEach((indicator, index) => {
-                indicator.addEventListener('click', function() {
+                indicator.addEventListener('click', function () {
                     // 移除所有活动状态
                     indicators.forEach(ind => ind.classList.remove('active'));
 
@@ -262,7 +262,7 @@ function initServiceAnimations() {
                 mainImage.style.opacity = '1';
 
                 // 添加图片加载完成后的处理
-                mainImage.onload = function() {
+                mainImage.onload = function () {
                     // 可以在这里添加图片加载完成的动画
                 };
             }, 400);
@@ -277,14 +277,14 @@ function initServiceAnimations() {
         let currentX = 0;
         let currentY = 0;
 
-        card.addEventListener('mouseenter', function(e) {
+        card.addEventListener('mouseenter', function (e) {
             isMouseOver = true;
             const rect = card.getBoundingClientRect();
             mouseX = e.clientX - rect.left - rect.width / 2;
             mouseY = e.clientY - rect.top - rect.height / 2;
         });
 
-        card.addEventListener('mousemove', function(e) {
+        card.addEventListener('mousemove', function (e) {
             if (!isMouseOver) return;
 
             const rect = card.getBoundingClientRect();
@@ -300,7 +300,7 @@ function initServiceAnimations() {
             card.style.transform = `perspective(1000px) rotateX(${-currentY}deg) rotateY(${currentX}deg) translateZ(20px)`;
         });
 
-        card.addEventListener('mouseleave', function() {
+        card.addEventListener('mouseleave', function () {
             isMouseOver = false;
             card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
         });
@@ -419,7 +419,7 @@ function initImageZoomFunctionality() {
     const serviceImages = document.querySelectorAll('.service-card .main-image img');
 
     serviceImages.forEach(img => {
-        img.addEventListener('click', function() {
+        img.addEventListener('click', function () {
             const serviceCard = this.closest('.service-card');
             const serviceType = serviceCard.dataset.service;
 
@@ -443,7 +443,7 @@ function initImageZoomFunctionality() {
     // 为指示器添加点击事件
     const indicators = document.querySelectorAll('.indicator');
     indicators.forEach(indicator => {
-        indicator.addEventListener('click', function(e) {
+        indicator.addEventListener('click', function (e) {
             e.stopPropagation();
             const imageSrc = this.dataset.image;
             if (imageSrc) {
@@ -516,10 +516,10 @@ function updateModalButtons() {
 }
 
 // 键盘事件处理
-document.addEventListener('keydown', function(e) {
+document.addEventListener('keydown', function (e) {
     const modal = document.getElementById('imageModal');
     if (modal.classList.contains('active')) {
-        switch(e.key) {
+        switch (e.key) {
             case 'Escape':
                 closeImageModal();
                 break;
@@ -534,7 +534,7 @@ document.addEventListener('keydown', function(e) {
 });
 
 // 点击模态框图片关闭
-document.addEventListener('click', function(e) {
+document.addEventListener('click', function (e) {
     if (e.target.classList.contains('modal-image')) {
         closeImageModal();
     }
@@ -546,11 +546,11 @@ function initContactFeatures() {
     const contactItems = document.querySelectorAll('.contact-item');
 
     contactItems.forEach(item => {
-        item.addEventListener('mouseenter', function() {
+        item.addEventListener('mouseenter', function () {
             this.style.transform = 'translateY(-5px) scale(1.02)';
         });
 
-        item.addEventListener('mouseleave', function() {
+        item.addEventListener('mouseleave', function () {
             this.style.transform = 'translateY(0) scale(1)';
         });
     });
@@ -563,7 +563,7 @@ function initContactFeatures() {
             text.style.cursor = 'pointer';
             text.title = '点击复制';
 
-            text.addEventListener('click', function() {
+            text.addEventListener('click', function () {
                 const textToCopy = this.textContent.trim();
                 navigator.clipboard.writeText(textToCopy).then(() => {
                     // 显示复制成功提示
@@ -612,7 +612,7 @@ function initCTAButtons() {
     const ctaButtons = document.querySelectorAll('.cta-button');
 
     ctaButtons.forEach(button => {
-        button.addEventListener('click', function(e) {
+        button.addEventListener('click', function (e) {
             e.preventDefault();
 
             const href = this.getAttribute('href');
@@ -634,12 +634,12 @@ function initCTAButtons() {
 }
 
 // 页面加载优化
-window.addEventListener('load', function() {
+window.addEventListener('load', function () {
     // 预加载图片
     const images = document.querySelectorAll('img');
     images.forEach(img => {
         if (!img.complete) {
-            img.addEventListener('load', function() {
+            img.addEventListener('load', function () {
                 this.style.opacity = '1';
             });
         }
@@ -702,7 +702,7 @@ window.addEventListener('error', handleError);
 
 // 导出函数供全局使用
 window.jiasuiWebsite = {
-    scrollToSection: function(sectionId) {
+    scrollToSection: function (sectionId) {
         const section = document.getElementById(sectionId);
         if (section) {
             const header = document.getElementById('header');
@@ -716,7 +716,7 @@ window.jiasuiWebsite = {
         }
     },
 
-    showNotification: function(message, type = 'info') {
+    showNotification: function (message, type = 'info') {
         const notification = document.createElement('div');
         notification.style.cssText = `
             position: fixed;
@@ -747,12 +747,12 @@ const homeItemsPerPage = 5;
 // 初始化主页公示信息
 function initAnnouncementsHome() {
     const listContainer = document.getElementById('announcementsListHome');
-    
+
     if (!listContainer) {
         console.log('未找到公示信息容器');
         return;
     }
-    
+
     // 检查是否有公示数据
     if (typeof announcementsData === 'undefined') {
         console.log('公示数据未定义');
@@ -761,14 +761,15 @@ function initAnnouncementsHome() {
         setTimeout(initAnnouncementsHome, 100);
         return;
     }
-    
+
     if (!announcementsData.length) {
         console.log('公示数据为空');
         listContainer.innerHTML = '<p class="no-announcements">暂无公示信息</p>';
         return;
     }
-    
+
     console.log('加载公示信息，共' + announcementsData.length + '条');
+    announcementsData.sort((a, b) => b.date.localeCompare(a.date));
     renderAnnouncementsHome();
     renderPaginationHome();
 }
@@ -776,18 +777,18 @@ function initAnnouncementsHome() {
 // 渲染主页公示信息列表
 function renderAnnouncementsHome() {
     const listContainer = document.getElementById('announcementsListHome');
-    
+
     if (!listContainer) {
         console.error('渲染失败：未找到容器');
         return;
     }
-    
+
     const startIndex = (homeAnnouncementsPage - 1) * homeItemsPerPage;
     const endIndex = startIndex + homeItemsPerPage;
     const pageData = announcementsData.slice(startIndex, endIndex);
-    
+
     console.log('渲染第' + homeAnnouncementsPage + '页，共' + pageData.length + '条');
-    
+
     listContainer.innerHTML = pageData.map(item => `
         <div class="announcement-item-home">
             <span class="announcement-bullet">•</span>
@@ -803,14 +804,14 @@ function renderAnnouncementsHome() {
 function renderPaginationHome() {
     const paginationContainer = document.getElementById('paginationHome');
     const totalPages = Math.ceil(announcementsData.length / homeItemsPerPage);
-    
+
     if (totalPages <= 1) {
         paginationContainer.innerHTML = '';
         return;
     }
-    
+
     let paginationHTML = '';
-    
+
     // 上一页按钮
     paginationHTML += `
         <button class="page-btn-home prev-page" ${homeAnnouncementsPage === 1 ? 'disabled' : ''} onclick="changePageHome(${homeAnnouncementsPage - 1})">
@@ -818,40 +819,40 @@ function renderPaginationHome() {
             上一页
         </button>
     `;
-    
+
     // 页码按钮
     paginationHTML += '<div class="page-numbers-home">';
-    
+
     // 始终显示第一页
     paginationHTML += `
         <button class="page-number-home ${homeAnnouncementsPage === 1 ? 'active' : ''}" onclick="changePageHome(1)">1</button>
     `;
-    
+
     // 显示省略号或中间页码
     if (homeAnnouncementsPage > 3) {
         paginationHTML += '<span class="page-ellipsis-home">...</span>';
     }
-    
+
     // 显示当前页附近的页码
     for (let i = Math.max(2, homeAnnouncementsPage - 1); i <= Math.min(totalPages - 1, homeAnnouncementsPage + 1); i++) {
         paginationHTML += `
             <button class="page-number-home ${homeAnnouncementsPage === i ? 'active' : ''}" onclick="changePageHome(${i})">${i}</button>
         `;
     }
-    
+
     // 显示省略号或最后一页
     if (homeAnnouncementsPage < totalPages - 2) {
         paginationHTML += '<span class="page-ellipsis-home">...</span>';
     }
-    
+
     if (totalPages > 1) {
         paginationHTML += `
             <button class="page-number-home ${homeAnnouncementsPage === totalPages ? 'active' : ''}" onclick="changePageHome(${totalPages})">${totalPages}</button>
         `;
     }
-    
+
     paginationHTML += '</div>';
-    
+
     // 下一页按钮
     paginationHTML += `
         <button class="page-btn-home next-page" ${homeAnnouncementsPage === totalPages ? 'disabled' : ''} onclick="changePageHome(${homeAnnouncementsPage + 1})">
@@ -859,7 +860,7 @@ function renderPaginationHome() {
             <i class="fas fa-chevron-right"></i>
         </button>
     `;
-    
+
     paginationContainer.innerHTML = paginationHTML;
 }
 
@@ -867,18 +868,18 @@ function renderPaginationHome() {
 function changePageHome(page) {
     const totalPages = Math.ceil(announcementsData.length / homeItemsPerPage);
     if (page < 1 || page > totalPages) return;
-    
+
     homeAnnouncementsPage = page;
     renderAnnouncementsHome();
     renderPaginationHome();
-    
+
     // 滚动到公示信息section顶部
     const announcementsSection = document.getElementById('announcements');
     if (announcementsSection) {
         const header = document.getElementById('header');
         const headerHeight = header ? header.offsetHeight : 0;
         const targetPosition = announcementsSection.offsetTop - headerHeight;
-        
+
         window.scrollTo({
             top: targetPosition,
             behavior: 'smooth'
